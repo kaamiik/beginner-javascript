@@ -1,15 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Dom Cardio</title>
+    <link rel="stylesheet" href="../../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Dom Cardio</title>
-  <link rel="stylesheet" href="../../base.css">
-</head>
+  <body>
+    <!-- <img src="../../raspopova-marina-vD2yoP8_8ZY-unsplash.jpg" alt=""> -->
+    <script src="./DOM-Cardio.js"></script>
 
-<body>
-  <script src="./DOM-Cardio.js"></script>
-</body>
+    <style>
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
 
+      .playerCard {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      .playerCard h2 {
+        color: black;
+      }
+
+      .delete {
+        cursor: pointer;
+      }
+    </style>
+  </body>
 </html>
