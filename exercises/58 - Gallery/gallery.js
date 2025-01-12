@@ -70,7 +70,7 @@ function Gallery(gallery) {
       showImage(e.currentTarget);
     }),
   );
-
+  // loop over each image
   images.forEach((image) => {
     image.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
