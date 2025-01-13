@@ -10,7 +10,60 @@
 
 <body>
   <script>
+    function makePizza(toppings = []) {
+      const pizzaPromise = new Promise((resolve, reject) => {
+        const amountOfTimeToBake = 500 + toppings.length * 200;
+        // Wait one second for pizza to cook
+        setTimeout(() => {
+          // When you are ready, you can reslove this promise.
+          resolve(`Here is your pizze with the toppings ${toppings.join(' ')}`);
+        }, amountOfTimeToBake);
+        // If something went wrong, we can reject this promise.
+      });
+      return pizzaPromise;
+    }
 
+    // makePizza(['pepperoni'])
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza(['ham', 'cheese']);
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza(['hot peppers', 'onion', 'feta']);
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //     return makePizza();
+    //   })
+    //   .then((pizza) => {
+    //     console.log(pizza);
+    //   });
+
+    // Run them concurrently
+    const pizzaPromise1 = makePizza(['hot peppers', 'onion', 'feta']);
+    const pizzaPromise2 = makePizza([
+      'hot peppers',
+      'onion',
+      'feta',
+      'hot peppers',
+      'onion',
+      'feta',
+      'hot peppers',
+      'onion',
+      'feta',
+    ]);
+    const pizzaPromise3 = makePizza(['ham', 'cheese']);
+
+    const dinnerPromise = Promise.all([
+      pizzaPromise1,
+      pizzaPromise2,
+      pizzaPromise3,
+    ]);
+
+    dinnerPromise.then((pizzas) => {
+      console.log(pizzas);
+    });
   </script>
 </body>
 
