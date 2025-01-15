@@ -9,8 +9,26 @@
 </head>
 
 <body>
+  <p class="user"></p>
   <script>
+    const baseEndpoint = 'https://api.githb.com';
+    const userEndpoint = `${baseEndpoint}/users`;
+    const userEl = document.querySelector('.user');
 
+    async function displayUser(username) {
+      userEl.textContent = 'Loading...';
+      const response = await fetch(`${userEndpoint}/${username}`);
+      const data = await response.json();
+      userEl.textContent = `${data.name} -- ${data.location}`;
+    }
+
+    function handleError(err) {
+      console.log('Oh noo!!');
+      console.log(err);
+      userEl.textContent = `Something went wrong: ${err}`;
+    }
+
+    displayUser('kaamiik').catch(handleError);
   </script>
 </body>
 
