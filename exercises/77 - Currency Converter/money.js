@@ -1,3 +1,8 @@
+const fromSelect = document.querySelector('[name="from_currency"]');
+const toSelect = document.querySelector('[name="to_currency"]');
+const endpoint =
+  'http://api.exchangeratesapi.io/v1/latest?access_key=b124272dc6aacc2aada2aa2da3d39571';
+
 const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
@@ -13,7 +18,7 @@ const currencies = {
   HRK: 'Croatian Kuna',
   HUF: 'Hungarian Forint',
   IDR: 'Indonesian Rupiah',
-  ILS: 'Israeli New Sheqel',
+  IRR: 'Iran Rial',
   INR: 'Indian Rupee',
   JPY: 'Japanese Yen',
   KRW: 'South Korean Won',
@@ -32,3 +37,23 @@ const currencies = {
   ZAR: 'South African Rand',
   EUR: 'Euro',
 };
+
+function generateOptions(options) {
+  return Object.entries(options)
+    .map(
+      ([currencyCode, currencyName]) =>
+        `<option value=${currencyCode}>${currencyCode} - ${currencyName}</option>`,
+    )
+    .join('');
+}
+
+async function fetchRates() {
+  const response = await fetch(endpoint);
+  const rates = await response.json();
+  return rates;
+}
+
+const optionsHTML = generateOptions(currencies);
+// Populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
